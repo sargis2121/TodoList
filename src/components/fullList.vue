@@ -4,18 +4,21 @@
     <hr />
     <ol class="list">
       <li v-for="(el, index) in list" v-bind:key="el">
-        {{ el }}
-        <button class="removeEl" v-on:click="removeElement(index)">
-          Delete
-        </button>
+        <div class="list-child">
+          {{ el }}
+          <div class="button-container">
+            <button class="removeEl" v-on:click="removeElement(index)">
+              Delete
+            </button>
+          </div>
+        </div>
       </li>
     </ol>
   </div>
 </template>
 
 <script>
-import ToDo from "./HelloWorld.vue";
-
+import ToDo from "./addText";
 export default {
   data() {
     return {
@@ -28,7 +31,9 @@ export default {
   },
   methods: {
     addList(val) {
+      if (val) {
       this.list.push(val);
+      }
     },
     removeElement(index) {
       this.list.splice(index, 1);
@@ -40,14 +45,28 @@ export default {
 <style>
 .full {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
-.list {
+ol {
+  counter-reset: olCounter;
   display: inline-block;
-  margin: 0 10px;
+  margin: 0 0px;
+}
+li {
+  width: 100px;
+}
+
+.list-child {
+  display: flex;
+}
+
+.button-container {
+  position: absolute;
+  margin-left: 100px;
+}
+
+.removeEl {
+  background-color: #e7e7e7;
+  color: black;
+  bottom: 10px;
 }
 </style>
