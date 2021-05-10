@@ -1,26 +1,19 @@
 <template>
   <div id="app">
-    <to-do v-on:save="addList"></to-do>
-    <p>{{list}}</p>
+    <TodoList />
   </div>
 </template>
 
 <script>
-import ToDo from "./components/HelloWorld.vue";
-
+import TodoList from "./components/fullList.vue";
 export default {
   name: "App",
-  props:{
-    list:String,
+  props: {
+    list: String,
   },
   components: {
-    ToDo,
+    TodoList,
   },
-  methods:{
-    addList(val) {
-    this.list = val;
-    }
-  }
 };
 </script>
 

@@ -1,38 +1,25 @@
 <template>
   <div class="hello">
-     <input type="text" v-model="text">
-     <button v-on:click="add">addText</button>
+    <input type="text" v-model="text" v-on:keypress.enter="add"/>
+    <button v-on:click="add">addText</button>
   </div>
-</template> 
+</template>
 
 <script>
 export default {
-  name: 'ToDo',
+  name: "ToDo",
   props: {
-      text:String,
+    text: String,
   },
-  methods:{
+  methods: {
     add() {
-      this.$emit('save',this.text)
-  }
-},
-}
+      this.$emit("save", this.text);
+    },
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
