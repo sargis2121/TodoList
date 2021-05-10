@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <input type="text" v-model="text" v-on:keypress.enter="add"/>
+    <input type="text" v-model="text" @keypress.enter="add"/>
     <button v-on:click="add">addText</button>
   </div>
 </template>
@@ -19,7 +19,3 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-</style>

@@ -3,7 +3,7 @@
     <ToDo v-on:save="addList" />
     <hr />
     <ol class="list">
-      <li v-for="(el, index) in list" v-bind:key="el">
+      <li v-for="(el, index) in list" :key="el">
         <div class="list-child">
           {{ el }}
           <div class="button-container">
@@ -32,7 +32,7 @@ export default {
   methods: {
     addList(val) {
       if (val) {
-      this.list.push(val);
+        this.list.push(val);
       }
     },
     removeElement(index) {
@@ -46,11 +46,13 @@ export default {
 .full {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
+
 ol {
   counter-reset: olCounter;
   display: inline-block;
   margin: 0 0px;
 }
+
 li {
   width: 100px;
 }
@@ -69,4 +71,5 @@ li {
   color: black;
   bottom: 10px;
 }
+
 </style>
