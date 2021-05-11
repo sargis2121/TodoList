@@ -7,10 +7,8 @@
 <script>
 import TodoList from "./components/fullList.vue";
 
-
 export default {
   name: "App",
-  
   components: {
     TodoList,
   },
@@ -23,7 +21,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  
 }
 body {
   background-color: lightblue;

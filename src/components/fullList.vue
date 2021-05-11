@@ -2,18 +2,20 @@
   <div class="full">
     <ToDo />
     <hr />
-    <ol class="list">
-      <li v-for="(el, index) in fullList" :key="el">
-        <div class="list-child">
-          {{ el }}
-          <div class="button-container">
-            <button class="removeEl" v-on:click="removeElement(index)">
-              Delete
-            </button>
+    <div class="list">
+      <ol>
+        <li v-for="(el, index) in fullList" :key="el.id">
+          <div class="list-child">
+            {{ el }}
+            <div class="button-container">
+              <button class="removeEl" @click="removeElement(index)">
+                Delete
+              </button>
+            </div>
           </div>
-        </div>
-      </li>
-    </ol>
+        </li>
+      </ol>
+    </div>
   </div>
 </template>
 
@@ -40,28 +42,41 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
 }
 
+.list {
+  background-color: lightgrey;
+  width: 300px;
+  border: 15px solid green;
+  padding: 50px;
+  margin: auto;
+}
+
 ol {
-  counter-reset: olCounter;
-  display: inline-block;
-  margin: 0 0px;
+  margin: 0;
+  padding: 0;
 }
 
 li {
-  width: 100px;
+  border: 1px;
 }
 
 .list-child {
+  list-style: position inside;
+  border: 1px;
   display: flex;
+  position: relative;
 }
 
 .button-container {
   position: absolute;
-  margin-left: 100px;
+  border: 1px;
+  margin-left: 250px;
+  display: table;
+  clear: both;
 }
 
 .removeEl {
   background-color: #e7e7e7;
   color: black;
-  bottom: 10px;
+  bottom: 100px;
 }
 </style>
