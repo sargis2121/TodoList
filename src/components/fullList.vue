@@ -1,9 +1,9 @@
 <template>
   <div class="full">
-    <ToDo v-on:save="addList" />
+    <ToDo />
     <hr />
     <ol class="list">
-      <li v-for="(el, index) in list" :key="el">
+      <li v-for="(el, index) in fullList" :key="el">
         <div class="list-child">
           {{ el }}
           <div class="button-container">
@@ -18,25 +18,18 @@
 </template>
 
 <script>
+import { mapGetters, mapMutations } from "vuex";
 import ToDo from "./addText";
+
 export default {
-  data() {
-    return {
-      list: [],
-      el: "",
-    };
-  },
+  computed: mapGetters(["fullList"]),
   components: {
     ToDo,
   },
   methods: {
-    addList(val) {
-      if (val) {
-        this.list.push(val);
-      }
-    },
-    removeElement(index) {
-      this.list.splice(index, 1);
+    ...mapMutations(["removeElement"]),
+    removEl() {
+      this.removeElement(this.index);
     },
   },
 };
@@ -71,5 +64,4 @@ li {
   color: black;
   bottom: 10px;
 }
-
 </style>

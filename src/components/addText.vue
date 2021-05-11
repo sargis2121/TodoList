@@ -1,19 +1,23 @@
 <template>
   <div class="hello">
-    <input type="text" v-model="text" @keypress.enter="add"/>
-    <button v-on:click="add">addText</button>
+    <input type="text" v-model="text" @keypress.enter="add" />
+    <button @click="add">addText</button>
   </div>
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 export default {
-  name: "ToDo",
-  props: {
-    text: String,
+  data() {
+    return {
+      text: "",
+    };
   },
   methods: {
+    ...mapMutations(["addItem"]),
     add() {
-      this.$emit("save", this.text);
+      this.addItem(this.text);
+      this.text = "";
     },
   },
 };
