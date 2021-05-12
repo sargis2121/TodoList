@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import TodoList from "./components/fullList.vue";
+import TodoList from "./components/addText.vue";
 
 export default {
   name: "App",
@@ -21,7 +21,6 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  
 }
 body {
   background-color: lightblue;
