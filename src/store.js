@@ -1,4 +1,3 @@
-
 import Vue from 'vue'
 import vuex from 'vuex'
 
@@ -34,21 +33,23 @@ export default new vuex.Store({
             }
           ]
     },
-    actions:{},
+
     mutations: {
+
         removeElement(state, index) {
             state.jsonList.splice(index, 1);
         },
-        creatPost(state,newPost) {
+
+        createPost(state,newPost) {
             if(newPost) {
              state.jsonList.unshift(newPost);
           }
-        }
+        },
     },
+
     getters: {
         dataList(state) {
-            return state.jsonList
+           return state.jsonList
         }
     }
-
 });

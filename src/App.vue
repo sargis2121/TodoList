@@ -5,6 +5,7 @@
 </template>
 
 <script>
+
 import TodoList from "./components/addText.vue";
 
 export default {
@@ -13,16 +14,19 @@ export default {
     TodoList,
   },
 };
+
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-}
-body {
-  background-color: lightblue;
-}
+
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+  }
+  body {
+    background-color: lightblue;
+  }
+
 </style>
