@@ -6,9 +6,6 @@ Vue.use(vuex);
 
 export default new vuex.Store({
     state: {
-        // list: [],
-        // el: "",
-        dataProp:{},
         jsonList:[
             {
               "id": 1,
@@ -39,24 +36,16 @@ export default new vuex.Store({
     },
     actions:{},
     mutations: {
-        // addItem(state, item) {
-        //     if (item) {
-        //         state.list.push(item)
-        //     }
-        // },
         removeElement(state, index) {
             state.jsonList.splice(index, 1);
         },
         creatPost(state,newPost) {
             if(newPost) {
-            state.jsonList.unshift(newPost);
+             state.jsonList.unshift(newPost);
+          }
         }
-    }
     },
     getters: {
-        // fullList(state) {
-        //     return state.list
-        // },
         dataList(state) {
             return state.jsonList
         }
