@@ -1,20 +1,19 @@
 <template>
   <div>
     <input type="text" v-model="title" placeholder="title" />
-    <input type="text" v-model="descreption" placeholder="descreption" />
+    <input type="text" v-model="description" placeholder="description" />
     <button @click="createNewPost">Creat New Post</button>
   </div>
 </template>
 
 <script>
-
 import { mapGetters, mapMutations } from "vuex";
 
 export default {
   data() {
     return {
       title: "",
-      descreption: ""
+      description: ""
     };
   },
   computed: mapGetters(["dataList"]),
@@ -22,16 +21,16 @@ export default {
   methods: {
     ...mapMutations(["createPost"]),
     createNewPost() {
-      if (this.title && this.descreption) {
+      if (this.title && this.description) {
         this.createPost({
           title: this.title,
-          descreption: this.descreption,
+          description: this.description,
           id: Date.now()
         });
       }
-      this.title = this.descreption = "";
+      this.title = "";
+      this.description = "";
     }
   }
 };
-
 </script>

@@ -16,7 +16,6 @@
 </template>
 
 <script>
-
 import TodoList from "./components/addText.vue";
 import Post from "./components/post";
 
@@ -30,7 +29,6 @@ export default {
 </script>
 
 <style>
-
 .grid-container {
   display: grid;
   grid-template-columns: 100px auto auto 100px;
@@ -41,46 +39,54 @@ export default {
   grid-row-gap: 1px;
   grid-column-gap: 5px;
 }
+
 .grid-container > div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
   padding: 1px 0;
   font-size: 20px;
 }
+
 .header {
   grid-column: 1 / span 4;
   grid-row: 1;
 }
+
 .left {
   grid-column: 1;
   grid-row: 2 / span 3;
 }
+
 .midle {
   grid-column: 2 / span 2;
   grid-row: 2 / span 3;
   height: calc(85vh - 100px);
   overflow-y: scroll;
 }
+
 .right {
   grid-column: 4;
   grid-row: 2 / span 3;
 }
+
 .footer {
   grid-column: 1 / span 4;
   grid-row: 5;
 }
+
 h1 {
   color: rgb(185, 19, 19);
 }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
 }
+
 body {
   overflow-y: hidden;
   background-color: lightblue;
 }
-
 </style>

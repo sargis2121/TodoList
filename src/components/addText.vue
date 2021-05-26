@@ -10,9 +10,8 @@
           v-show="editing"
         />
       </div>
-
       <div>
-        <span v-show="!editing">{{ dataProp.descreption }}</span>
+        <span v-show="!editing">{{ dataProp.description }}</span>
         <input
           v-if="dataIndex == idx"
           type="text"
@@ -20,18 +19,19 @@
           v-show="editing"
         />
       </div>
-
-      <div>
-        <button class="editEl" v-show="!editing" @click="editTitle(idx)">
+      <div v-if="!editing">
+        <button class="editEl" @click="editTitle(idx)">
           edit
         </button>
-        <button class="removeEl" v-show="!editing" @click="removeElement(idx)">
+        <button class="removeEl" @click="removeElement(idx)">
           delete
         </button>
-        <button v-if="dataIndex == idx" v-show="editing" @click="saveEdit(idx)">
+      </div>
+      <div v-else>
+        <button v-if="dataIndex == idx" @click="saveEdit(idx)">
           save
         </button>
-        <button v-if="dataIndex == idx" v-show="editing" @click="cancelEdit(idx)">
+        <button v-if="dataIndex == idx" @click="cancelEdit(idx)">
           cancel
         </button>
       </div>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapGetters, mapMutations, mapActions } from "vuex";
 
 export default {
   data() {
@@ -53,19 +53,24 @@ export default {
   },
   computed: mapGetters(["dataList"]),
   methods: {
-    ...mapMutations(["removeElement"]),
+    ...mapMutations(["removeElement", "saveEditTodo"]),
+    ...mapActions(["editTodo"]),
     editTitle(val) {
       this.editing = true;
       this.dataIndex = val;
       this.title = this.dataList[val].title;
-      this.desc = this.dataList[val].descreption;
+      this.desc = this.dataList[val].description;
     },
     saveEdit(val) {
       this.dataIndex = val;
       if (this.title && this.desc) {
+        const todo = {
+          idx: val,
+          title: this.title,
+          description: this.desc
+        };
         this.editing = false;
-        this.dataList[val].title = this.title;
-        this.dataList[val].descreption = this.desc;
+        this.editTodo(todo);
       }
     },
     cancelEdit(val) {
@@ -77,7 +82,6 @@ export default {
 </script>
 
 <style scoped>
-
 .grid-container {
   display: grid;
   align-self: center;
@@ -89,6 +93,7 @@ export default {
   grid-row-gap: 10px;
   justify-content: center;
 }
+
 .grid-container > div {
   background-color: rgba(34, 128, 65, 0.8);
   text-align: center;
@@ -97,6 +102,7 @@ export default {
   word-wrap: break-word;
   width: 100px;
 }
+
 .table {
   background-color: lightgrey;
   width: auto;
@@ -104,13 +110,14 @@ export default {
   padding: 50px;
   margin: 1px;
 }
+
 .editEl {
   background-color: #e7e7e7;
   color: black;
 }
+
 .removeEl {
   background-color: #e7e7e7;
   color: black;
 }
-
 </style>
