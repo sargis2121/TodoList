@@ -109,6 +109,8 @@ export default {
   border: 15px solid green;
   padding: 50px;
   margin: 1px;
+  height: calc(73vh - 100px);
+  overflow-y: scroll;
 }
 
 .editEl {

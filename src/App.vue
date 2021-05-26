@@ -6,7 +6,7 @@
         <h1>To Do List</h1>
       </div>
       <div class="left"><h6>Left</h6></div>
-      <div class="midle">
+      <div class="middle">
         <TodoList />
       </div>
       <div class="right"><h6>Right</h6></div>
@@ -57,11 +57,10 @@ export default {
   grid-row: 2 / span 3;
 }
 
-.midle {
+.middle {
   grid-column: 2 / span 2;
   grid-row: 2 / span 3;
-  height: calc(85vh - 100px);
-  overflow-y: scroll;
+  
 }
 
 .right {
