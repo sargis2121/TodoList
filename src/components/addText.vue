@@ -1,71 +1,125 @@
 <template>
-  <div>
-  <Post/>
-  <hr/>
-
-     <table class="table">
-          <tr v-for="(dataProp,idx) in dataList" :key="idx">
-               <td>
-                    <span v-show="!editing">{{dataProp.title}}</span>
-                    <input v-if="dataIndex==idx" type="text" v-model="dataProp.title"  v-show="editing">
-               </td>
-             
-               <td>
-                      <span v-show="!editing">{{dataProp.descreption}}</span>
-                    <input v-if="dataIndex==idx" type="text" v-model="dataProp.descreption"  v-show="editing">
-               </td>
-               <td>
-                    <button  v-show="!editing" v-on:click="editTitle(idx)">edit</button>
-                    <button  v-show="!editing" v-on:click="removeElement(idx)">delete</button>
-                    <button v-if="dataIndex==idx" v-show="editing" v-on:click="saveEdit()">save</button>
-               </td>
-          </tr>
-     </table>
+  <div class="table">
+    <div class="grid-container" v-for="(dataProp, idx) in dataList" :key="idx">
+      <div>
+        <span v-show="!editing">{{ dataProp.title }}</span>
+        <input
+          v-if="dataIndex == idx"
+          type="text"
+          v-model="title"
+          v-show="editing"
+        />
+      </div>
+      <div>
+        <span v-show="!editing">{{ dataProp.description }}</span>
+        <input
+          v-if="dataIndex == idx"
+          type="text"
+          v-model="desc"
+          v-show="editing"
+        />
+      </div>
+      <div v-if="!editing">
+        <button class="editEl" @click="editTitle(idx)">
+          edit
+        </button>
+        <button class="removeEl" @click="removeElement(idx)">
+          delete
+        </button>
+      </div>
+      <div v-else>
+        <button v-if="dataIndex == idx" @click="saveEdit(idx)">
+          save
+        </button>
+        <button v-if="dataIndex == idx" @click="cancelEdit(idx)">
+          cancel
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapMutations, mapActions } from "vuex";
 
-import { mapGetters, mapMutations } from "vuex";
-import Post from "./post"
 export default {
   data() {
     return {
-      editing:false,
-dataIndex:"",
-      text: "",
+      title: "",
+      desc: "",
+      editing: false,
+      dataIndex: ""
     };
   },
-  components:{
-    Post,
-    },
   computed: mapGetters(["dataList"]),
   methods: {
-    ...mapMutations(["addItem","removeElement"]),
+    ...mapMutations(["removeElement", "saveEditTodo"]),
+    ...mapActions(["editTodo"]),
     editTitle(val) {
-this.editing=true;
-this.dataIndex=val;
+      this.editing = true;
+      this.dataIndex = val;
+      this.title = this.dataList[val].title;
+      this.desc = this.dataList[val].description;
     },
-    saveEdit() {
-      this.editing=false;
+    saveEdit(val) {
+      this.dataIndex = val;
+      if (this.title && this.desc) {
+        const todo = {
+          idx: val,
+          title: this.title,
+          description: this.desc
+        };
+        this.editing = false;
+        this.editTodo(todo);
+      }
     },
+    cancelEdit(val) {
+      this.editing = false;
+      this.dataIndex = val;
+    }
   }
 };
 </script>
 
-<style>
+<style scoped>
+.grid-container {
+  display: grid;
+  align-self: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  background-color: lightgrey;
+  padding: 1px;
+  justify-content: center;
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  justify-content: center;
+}
 
+.grid-container > div {
+  background-color: rgba(34, 128, 65, 0.8);
+  text-align: center;
+  padding: 10px 0;
+  font-size: 20px;
+  word-wrap: break-word;
+  width: 100px;
+}
 
 .table {
   background-color: lightgrey;
-  width: 300px;
+  width: auto;
   border: 15px solid green;
   padding: 50px;
-  margin: auto;
+  margin: 1px;
+  height: calc(73vh - 100px);
+  overflow-y: scroll;
 }
 
+.editEl {
+  background-color: #e7e7e7;
+  color: black;
+}
 
-
-
-
+.removeEl {
+  background-color: #e7e7e7;
+  color: black;
+}
 </style>
